@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), 'fog', 'core')
+require 'fog/core'
 
 module Fog
 
@@ -6,16 +6,16 @@ module Fog
     VERSION = '1.3.1'
   end
 
+  autoload :CDN,      'fog/cdn'
+  autoload :Computer, 'fog/compute'
+  autoload :DNS,      'fog/dns'
+  autoload :Identity, 'fog/identity'
+  autoload :Image,    'fog/image'
+  autoload :Storage,  'fog/storage'
+  autoload :Volume,   'fog/volume'
+
 end
 
 # FIXME: these should go away (force usage of Fog::[Compute, CDN, DNS, Storage]  etc)
 require 'fog/providers'
 require 'fog/terremark'
-
-require 'fog/compute'
-require 'fog/identity'
-require 'fog/image'
-require 'fog/volume'
-require 'fog/cdn'
-require 'fog/dns'
-require 'fog/storage'
