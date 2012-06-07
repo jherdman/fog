@@ -1,6 +1,14 @@
 module Fog
   module Storage
 
+    autoload :AWS,       'fog/aws/storage'
+    autoload :Google,    'fog/google/storage'
+    autoload :HP,        'fog/hp/storage'
+    autoload :IBM,       'fog/ibm/storage'
+    autoload :Local,     'fog/local/storage'
+    autoload :Ninefold,  'fog/ninefold/storage'
+    autoload :Rackspace, 'fog/rackspace/storage'
+
     def self.[](provider)
       self.new(:provider => provider)
     end
@@ -9,26 +17,19 @@ module Fog
       attributes = attributes.dup # prevent delete from having side effects
       case provider = attributes.delete(:provider).to_s.downcase.to_sym
       when :aws
-        require 'fog/aws/storage'
-        Fog::Storage::AWS.new(attributes)
+        AWS.new(attributes)
       when :google
-        require 'fog/google/storage'
-        Fog::Storage::Google.new(attributes)
+        Google.new(attributes)
       when :hp
-        require 'fog/hp/storage'
-        Fog::Storage::HP.new(attributes)
+        HP.new(attributes)
       when :ibm
-        require 'fog/ibm/storage'
-        Fog::Storage::IBM.new(attributes)
+        IBM.new(attributes)
       when :local
-        require 'fog/local/storage'
-        Fog::Storage::Local.new(attributes)
+        Local.new(attributes)
       when :ninefold
-        require 'fog/ninefold/storage'
-        Fog::Storage::Ninefold.new(attributes)
+        Ninefold.new(attributes)
       when :rackspace
-        require 'fog/rackspace/storage'
-        Fog::Storage::Rackspace.new(attributes)
+        Rackspace.new(attributes)
       else
         raise ArgumentError.new("#{provider} is not a recognized storage provider")
       end
