@@ -1,6 +1,10 @@
 module Fog
   module CDN
 
+    autoload :AWS,       'fog/aws/cdn'
+    autoload :HP,        'fog/hp/cdn'
+    autoload :Rackspace, 'fog/Rackspace/cdn'
+
     def self.[](provider)
       self.new(:provider => provider)
     end
@@ -9,14 +13,11 @@ module Fog
       attributes = attributes.dup # prevent delete from having side effects
       case provider = attributes.delete(:provider).to_s.downcase.to_sym
       when :aws
-        require 'fog/aws/cdn'
-        Fog::CDN::AWS.new(attributes)
+        AWS.new(attributes)
       when :hp
-        require 'fog/hp/cdn'
-        Fog::CDN::HP.new(attributes)
+        HP.new(attributes)
       when :rackspace
-        require 'fog/rackspace/cdn'
-        Fog::CDN::Rackspace.new(attributes)
+        Rackspace.new(attributes)
       else
         raise ArgumentError.new("#{provider} is not a recognized cdn provider")
       end
