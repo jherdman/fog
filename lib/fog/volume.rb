@@ -1,6 +1,8 @@
 module Fog
   module Volume
 
+    autoload :OpenStack, 'fog/openstack/volume'
+
     def self.[](provider)
       self.new(:provider => provider)
     end
@@ -9,8 +11,7 @@ module Fog
       attributes = attributes.dup # Prevent delete from having side effects
       case provider = attributes.delete(:provider).to_s.downcase.to_sym
       when :openstack
-        require 'fog/openstack/volume'
-        Fog::Volume::OpenStack.new(attributes)
+        OpenStack.new(attributes)
       else
         raise ArgumentError.new("#{provider} has no identity service")
       end
