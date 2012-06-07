@@ -7,7 +7,7 @@ module Fog
   end
 
   autoload :CDN,      'fog/cdn'
-  autoload :Computer, 'fog/compute'
+  autoload :Compute,  'fog/compute'
   autoload :DNS,      'fog/dns'
   autoload :Identity, 'fog/identity'
   autoload :Image,    'fog/image'
