@@ -1,6 +1,15 @@
 module Fog
   module DNS
 
+    autoload :AWS,         'fog/aws/dns'
+    autoload :Bluebox,     'fog/bluebox/dns'
+    autoload :DNSimple,    'fog/dnsimple/dns'
+    autoload :DNSMadeEasy, 'fog/dnsmadeeasy/dns'
+    autoload :Dynect,      'fog/dynect/dns'
+    autoload :Linode,      'fog/linode/dns'
+    autoload :Zerigo,      'fog/zerigo/dns'
+    autoload :Rackspace,   'fog/rackspace/dns'
+
     def self.[](provider)
       self.new(:provider => provider)
     end
@@ -9,29 +18,21 @@ module Fog
       attributes = attributes.dup # prevent delete from having side effects
       case provider = attributes.delete(:provider).to_s.downcase.to_sym
       when :aws
-        require 'fog/aws/dns'
-        Fog::DNS::AWS.new(attributes)
+        AWS.new(attributes)
       when :bluebox
-        require 'fog/bluebox/dns'
-        Fog::DNS::Bluebox.new(attributes)
+        Bluebox.new(attributes)
       when :dnsimple
-        require 'fog/dnsimple/dns'
-        Fog::DNS::DNSimple.new(attributes)
+        DNSimple.new(attributes)
       when :dnsmadeeasy
-        require 'fog/dnsmadeeasy/dns'
-        Fog::DNS::DNSMadeEasy.new(attributes)
+        DNSMadeEasy.new(attributes)
       when :dynect
-        require 'fog/dynect/dns'
-        Fog::DNS::Dynect.new(attributes)
+        Dynect.new(attributes)
       when :linode
-        require 'fog/linode/dns'
-        Fog::DNS::Linode.new(attributes)
+        Linode.new(attributes)
       when :zerigo
-        require 'fog/zerigo/dns'
-        Fog::DNS::Zerigo.new(attributes)
+        Zerigo.new(attributes)
       when :rackspace
-        require 'fog/rackspace/dns'
-        Fog::DNS::Rackspace.new(attributes)
+        Rackspace.new(attributes)
       else
         raise ArgumentError.new("#{provider} is not a recognized dns provider")
       end
