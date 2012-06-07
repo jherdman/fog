@@ -5,25 +5,25 @@ module Fog
 
     extend Fog::Provider
 
-    service(:auto_scaling,    'aws/auto_scaling',     'AutoScaling')
-    service(:beanstalk,       'aws/beanstalk',        'ElasticBeanstalk')
-    service(:cdn,             'aws/cdn',              'CDN')
-    service(:compute,         'aws/compute',          'Compute')
-    service(:cloud_formation, 'aws/cloud_formation',  'CloudFormation')
-    service(:cloud_watch,     'aws/cloud_watch',      'CloudWatch')
-    service(:dynamodb,        'aws/dynamodb',         'DynamoDB')
-    service(:dns,             'aws/dns',              'DNS')
-    service(:elasticache,     'aws/elasticache',      'Elasticache')
-    service(:elb,             'aws/elb',              'ELB')
-    service(:emr,             'aws/emr',              'EMR')
-    service(:iam,             'aws/iam',              'IAM')
-    service(:rds,             'aws/rds',              'RDS')
-    service(:ses,             'aws/ses',              'SES')
-    service(:simpledb,        'aws/simpledb',         'SimpleDB')
-    service(:sns,             'aws/sns',              'SNS')
-    service(:sqs,             'aws/sqs',              'SQS')
-    service(:sts,             'aws/sts',              'STS')
-    service(:storage,         'aws/storage',          'Storage')
+    autoload :AutoScaling,      'fog/aws/auto_scaling'
+    autoload :ElasticBeanstalk, 'fog/aws/beanstalk'
+    autoload :CDN,              'fog/aws/cdn'
+    autoload :Compute,          'fog/aws/compute'
+    autoload :CloudFormation,   'fog/aws/cloud_formation'
+    autoload :CloudWatch,       'fog/aws/cloud_watch'
+    autoload :DynamoDB,         'fog/aws/dynamodb'
+    autoload :DNS,              'fog/aws/dns'
+    autoload :Elasticache,      'fog/aws/elasticache'
+    autoload :ELB,              'fog/aws/elb'
+    autoload :EMR,              'fog/aws/emr'
+    autoload :IAM,              'fog/aws/iam'
+    autoload :RDS,              'fog/aws/rds'
+    autoload :SES,              'fog/aws/ses'
+    autoload :SimpleDB,         'fog/aws/simpledb'
+    autoload :SNS,              'fog/aws/sns'
+    autoload :SQS,              'fog/aws/sqs'
+    autoload :STS,              'fog/aws/sts'
+    autoload :Storage,          'fog/aws/storage'
 
     def self.indexed_param(key, values)
       params = {}
